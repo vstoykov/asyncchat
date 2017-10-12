@@ -195,16 +195,16 @@ class Connection:
             chars.append(char)
             if char == b'\n' or char == b'':
                 break
-        return b''.join(chars).decode('ascii', 'replace')
+        return b''.join(chars).decode('utf8', 'replace')
 
     async def writeline(self, text):
         """Coroutine to write a line."""
-        await self.sendall(text.encode('ascii', 'replace') + b'\r\n')
+        await self.sendall(text.encode('utf8', 'replace') + b'\r\n')
 
     async def broadcast(self, text):
         """Coroutine to broadcast a line (send to other clients)."""
         print(text)  # Let's us see whats going in in the server
-        line_bytes = text.encode('ascii', 'replace') + b'\r\n'
+        line_bytes = text.encode('utf8', 'replace') + b'\r\n'
         for connection in self.chatters:
             if connection is not self:
                 await connection.sendall(line_bytes)
