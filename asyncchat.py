@@ -264,4 +264,7 @@ if __name__ == "__main__":
         host = '127.0.0.1'
         port = 2323
     server = Server(host, port)
-    server.run_forever()
+    try:
+        server.run_forever()
+    except KeyboardInterrupt:
+        print('')
